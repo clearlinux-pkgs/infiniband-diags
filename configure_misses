@@ -1,0 +1,6 @@
+Configure miss: --enable-test-utils
+Configure miss: --enable-compat-utils
+Configure miss: --with-perl-path 
+Configure miss: --with-perl-installdir 
+Configure miss: rst2man
+Configure miss: rst2man.py
