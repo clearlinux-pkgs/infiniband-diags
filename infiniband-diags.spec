@@ -4,15 +4,16 @@
 #
 Name     : infiniband-diags
 Version  : 2.0.0
-Release  : 3
+Release  : 4
 URL      : https://github.com/linux-rdma/infiniband-diags/archive/2.0.0.tar.gz
 Source0  : https://github.com/linux-rdma/infiniband-diags/archive/2.0.0.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-3-Clause
+License  : BSD-2-Clause
 Requires: infiniband-diags-bin
 Requires: infiniband-diags-lib
 Requires: infiniband-diags-doc
+Requires: infiniband-diags-data
 BuildRequires : opensm-dev
 BuildRequires : pkgconfig(glib-2.0)
 BuildRequires : rdma-core-dev
@@ -26,9 +27,18 @@ similar functionality.
 %package bin
 Summary: bin components for the infiniband-diags package.
 Group: Binaries
+Requires: infiniband-diags-data
 
 %description bin
 bin components for the infiniband-diags package.
+
+
+%package data
+Summary: data components for the infiniband-diags package.
+Group: Data
+
+%description data
+data components for the infiniband-diags package.
 
 
 %package dev
@@ -36,6 +46,7 @@ Summary: dev components for the infiniband-diags package.
 Group: Development
 Requires: infiniband-diags-lib
 Requires: infiniband-diags-bin
+Requires: infiniband-diags-data
 Provides: infiniband-diags-devel
 
 %description dev
@@ -53,6 +64,7 @@ doc components for the infiniband-diags package.
 %package lib
 Summary: lib components for the infiniband-diags package.
 Group: Libraries
+Requires: infiniband-diags-data
 
 %description lib
 lib components for the infiniband-diags package.
@@ -66,9 +78,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1506720532
-%autogen --disable-static
-make V=1  %{?_smp_mflags}
+export SOURCE_DATE_EPOCH=1528841081
+%autogen --disable-static --with-perl-installdir=/usr/share/perl5
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
@@ -78,13 +90,12 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1506720532
+export SOURCE_DATE_EPOCH=1528841081
 rm -rf %{buildroot}
 %make_install
 
 %files
 %defattr(-,root,root,-)
-/IBswcountlimits.pm
 
 %files bin
 %defattr(-,root,root,-)
@@ -119,6 +130,10 @@ rm -rf %{buildroot}
 /usr/bin/smpquery
 /usr/bin/vendstat
 
+%files data
+%defattr(-,root,root,-)
+/usr/share/perl5/IBswcountlimits.pm
+
 %files dev
 %defattr(-,root,root,-)
 /usr/include/infiniband/ibnetdisc.h
@@ -129,7 +144,7 @@ rm -rf %{buildroot}
 /usr/lib64/libibnetdisc.so
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/man/man3/*
 %doc /usr/share/man/man8/*
 
