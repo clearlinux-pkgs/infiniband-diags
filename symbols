@@ -79,6 +79,7 @@ libibmad.so.5:mad_dump_physportstate
 libibmad.so.5:mad_dump_port_ext_speeds_counters
 libibmad.so.5:mad_dump_port_ext_speeds_counters_rsfec_active
 libibmad.so.5:mad_dump_portcapmask
+libibmad.so.5:mad_dump_portcapmask2
 libibmad.so.5:mad_dump_portinfo
 libibmad.so.5:mad_dump_portinfo_ext
 libibmad.so.5:mad_dump_portsamples_control
