@@ -4,7 +4,7 @@
 #
 Name     : infiniband-diags
 Version  : 2.1.0
-Release  : 5
+Release  : 6
 URL      : https://github.com/linux-rdma/infiniband-diags/releases/download/2.1.0/infiniband-diags-2.1.0.tar.gz
 Source0  : https://github.com/linux-rdma/infiniband-diags/releases/download/2.1.0/infiniband-diags-2.1.0.tar.gz
 Summary  : OpenFabrics Alliance InfiniBand Diagnostic Tools
